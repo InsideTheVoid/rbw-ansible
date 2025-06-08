@@ -153,7 +153,10 @@ class LookupModule(LookupBase):
         if not terms:
             terms = [None]
 
-        return [_rbw.get_field(field, term) for term in terms]
+        if len(terms) == 1:
+            return _rbw.get_field(field, terms[0])
+        else:
+            return [_rbw.get_field(field, term) for term in terms]
 
 
 _rbw = Rbw()
